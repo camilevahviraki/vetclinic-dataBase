@@ -21,3 +21,38 @@ UPDATE animals SET species = 'unspecified';
 UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
 
 UPDATE animals SET species = 'pokemon' WHERE species = 'unspecified';
+
+DELETE FROM animals WHERE date_of_birth >= '2022-01-01';
+
+UPDATE animals SET weight_kg = weight_kg * 1;
+
+SELECT COUNT(*) FROM animals;
+
+SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
+
+SELECT AVG(weight_kg) FROM animals;
+
+SELECT MAX(escape_attempts) as max_escapes FROM animals WHERE neutered = 'true';
+SELECT MAX(escape_attempts) as max_escapes FROM animals WHERE neutered = 'false';
+
+SELECT MAX(weight_kg) as max_Weigth FROM animals WHERE species = 'pokemon';
+SELECT MIN(weight_kg) as min_Weigth FROM animals WHERE species = 'pokemon';
+
+SELECT MAX(weight_kg) as max_Weigth FROM animals WHERe species = 'digimon';
+SELECT MIN(weight_kg) as min_Weigth FROM animals WHERe species = 'digimon';
+
+SELECT AVG(escape_attempts) FROM animals WHERE species = 'pokemon' AND date_of_birth BETWEEN '1990-01-01' AND '2000-01-01';
+
+SELECT owners.full_name, animals.name FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owners.full_name='Melody Pond';
+
+SELECT species.name, animals.name FROM animals INNER JOIN species ON species.name = animals.species_id WHERE species.name='Pokemon';
+
+SELECT owners.full_name, animals.name FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owners.full_name='Jennifer Orwell';
+
+SELECT COUNT(*) FROM animals WHERE species_id = 'Pokemon';
+
+SELECT owners.full_name, animals.name, animals.species_id FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owner_id = 'Jennifer Orwell' AND species_id = 'Digimon';
+
+SELECT owners.full_name, animals.name, animals.species_id, animals.escape_attempts FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owner_id = 'Dean Winchester' AND escape_attempts = 0;
+
+SELECT animals.owner_id FROM animals INNER JOIN owners ON animals.owner_id = owners.full_name GROUP BY owner_id ORDER BY COUNT(*) DESC LIMIT 1;
