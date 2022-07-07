@@ -43,8 +43,16 @@ SELECT MIN(weight_kg) as min_Weigth FROM animals WHERe species = 'digimon';
 
 SELECT AVG(escape_attempts) FROM animals WHERE species = 'pokemon' AND date_of_birth BETWEEN '1990-01-01' AND '2000-01-01';
 
-SELECT * FROM animals WHERE owner_id = 'Melody Pond';
+SELECT owners.full_name, animals.name FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owners.full_name='Melody Pond';
 
-SELECT * FROM animals WHERE species_id = 'Pokemon';
+SELECT species.name, animals.name FROM animals INNER JOIN species ON species.name = animals.species_id WHERE species.name='Pokemon';
 
-SELECT * FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id;
+SELECT owners.full_name, animals.name FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owners.full_name='Jennifer Orwell';
+
+SELECT COUNT(*) FROM animals WHERE species_id = 'Pokemon';
+
+SELECT owners.full_name, animals.name, animals.species_id FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owner_id = 'Jennifer Orwell' AND species_id = 'Digimon';
+
+SELECT owners.full_name, animals.name, animals.species_id, animals.escape_attempts FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owner_id = 'Dean Winchester' AND escape_attempts = 0;
+
+SELECT animals.owner_id FROM animals INNER JOIN owners ON animals.owner_id = owners.full_name GROUP BY owner_id ORDER BY COUNT(*) DESC LIMIT 1;
