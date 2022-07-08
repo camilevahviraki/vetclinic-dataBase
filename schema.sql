@@ -14,3 +14,12 @@ CREATE TABLE species (id SERIAL PRIMARY KEY, name varchar(100));
 ALTER TABLE animals ADD species_id varchar(100);
 ALTER TABLE animals ADD owner_id varchar(100);
 
+CREATE TABLE vets (id SERIAL PRIMARY KEY, name varchar(100), age int, date_of_graduation date);
+
+CREATE TABLE specializations (id SERIAL PRIMARY KEY, vet_name varchar(100));
+ALTER TABLE specializations ADD species varchar(100);
+
+CREATE TABLE visits (id SERIAL PRIMARY KEY, animal varchar(100), vet varchar(100), visit_date date);
+
+ALTER TABLE animals ADD vet_id varchar(100);
+
