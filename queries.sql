@@ -56,3 +56,27 @@ SELECT owners.full_name, animals.name, animals.species_id FROM animals INNER JOI
 SELECT owners.full_name, animals.name, animals.species_id, animals.escape_attempts FROM animals INNER JOIN owners ON owners.full_name = animals.owner_id WHERE owner_id = 'Dean Winchester' AND escape_attempts = 0;
 
 SELECT animals.owner_id FROM animals INNER JOIN owners ON animals.owner_id = owners.full_name GROUP BY owner_id ORDER BY COUNT(*) DESC LIMIT 1;
+
+
+SELECT animals.name, visits.vet, visits.visit_date FROM animals INNER JOIN visits ON visits.animal = animals.name WHERE visits.vet = 'William Tatcher' ORDER BY visits.visit_date DESC LIMIT 1;
+
+SELECT COUNT(*) FROM visits WHERE vet = 'Stephanie Mendez'; 
+
+SELECT specializations.vet_name, specializations.species FROM visits INNER JOIN specializations ON specializations.vet_name = visits.vet WHERE vet = 'William Tatcher';
+
+SELECT specializations.vet_name, specializations.species FROM visits INNER JOIN specializations ON specializations.vet_name = visits.vet WHERE vet = 'Jack Harkness';
+
+SELECT specializations.vet_name, specializations.species FROM visits INNER JOIN specializations ON specializations.vet_name = visits.vet WHERE vet = 'Stephanie Mendez';
+
+SELECT animals.name, visits.vet, visits.visit_date FROM animals INNER JOIN visits ON visits.animal = animals.name WHERE visits.vet = 'Stephanie Mendez' AND visits.visit_date BETWEEN '2020-4-1' AND '2020-8-30';
+
+SELECT animal FROM visits GROUP BY animal ORDER BY COUNT(*) DESC LIMIT 1;
+
+SELECT animals.name, visits.vet, visits.visit_date FROM animals INNER JOIN visits ON visits.animal = animals.name ORDER BY visits.visit_date LIMIT 1;
+
+SELECT COUNT(*) FROM visits INNER JOIN specializations ON specializations.vet_name = visits.vet WHERE species = 'Pokemon' AND animal NOT LIKE '%mon';
+
+SELECT * FROM visits GROUP BY animal ORDER BY COUNT(*) DESC LIMIT 1;
+
+
+
